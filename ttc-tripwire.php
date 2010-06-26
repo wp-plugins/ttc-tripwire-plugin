@@ -2,29 +2,43 @@
 
 /*
 Plugin Name: TimesToCome Tripwire Plugin
-Version: 1.0
+Version: 1.1
 Plugin URI:  http://herselfswebtools.com/2008/06/wordpress-plugin-tripwire-3rd-of-three-part-security-plugin-set.html
 Description: Security plugin for Wordpress Part 3 of 3 part set
 Author: Linda MacPhee-Cobb
 Author URI: http://timestocome.com
 */
 
+//********************************************************************************************************************
+// 1.1 fixes admin menu options for 3.0
+//*******************************************************************************************************************	
+	
 
 
+//function ttc_list_files(){}
+	
+add_action( 'admin_menu', 'ttc_tripwire_add_menu_page' );   //add admin menu for user interaction	
 
-function ttc_list_files(){}
-
+	
+	
 //  -----  user page ------------
 function ttc_tripwire_add_menu_page()
 {
-			if ( function_exists('add_management_page')){
-				add_management_page( 'Tripwire logs', 'Tripwire logs', 8, 'Tripwire Logs', 'ttc_add_user_tripwire_menu');
-			}
+	add_options_page( 'Tripwire logs', 'Tripwire logs', 'manage_options', 'TripwireLogs', 'ttc_add_user_tripwire_menu');	
 }
 
+	
+	
+	
 // display to user
 function ttc_add_user_tripwire_menu()
 {
+	if (!current_user_can('manage_options'))  {
+		wp_die( __('You do not have sufficient permissions to access this page.') );
+	}
+	
+	
+
 	$go_back = 0;
 	
 	// how far back in time are we going?
@@ -92,9 +106,8 @@ function ttc_add_user_tripwire_menu()
 			
 	} // if go_back > 0 )			
 					
-						
+				
 }
 
-add_action( 'admin_menu', 'ttc_tripwire_add_menu_page' );   //add admin menu for user interaction
 
 ?>

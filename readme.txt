@@ -3,7 +3,7 @@ Contributors: Linda MacPhee-Cobb
 Tags: file, changed files, file list, security
 Requires at least: 2.5
 Tested up to: 2.5.1
-Stable tag: 1.0
+Stable tag: 1.1
 
 This plugin acts as a tripwire for you.  It will give you a list of all files changed on your WordPress site in the last 1-99 days.
 
